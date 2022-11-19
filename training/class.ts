@@ -81,6 +81,17 @@ class Fraction4 {
 
     constructor(private _numerator: number, private _demominator: number){}
 
+    add(other: Fraction): Fraction{
+        const resultNumerator = this._numerator * other.demominator + this._demominator * other.numerator
+        const resultDemominator = this._demominator * other.demominator
+
+        return new Fraction(resultNumerator, resultDemominator)
+    }
+
+    toString(): string{
+        return `${this._numerator}/${this._demominator}`
+    }
+
     get numerator(): number{
         return this._numerator
     }
@@ -95,3 +106,15 @@ console.log(f4.demominator) //結果 5
 
 // f4.numerator = 3  // ここで上書きできない
 console.log(f4.numerator) //結果 4
+
+const f4_1 = new Fraction4(4, 6)
+console.log(f4_1.toString())//結果 4/6
+
+const f4_2 = new Fraction4(3, 10)
+const resultAdd = f4_2.add(f4_1)
+console.log(resultAdd)
+console.log(resultAdd.toString())//結果 58/60
+
+// 存在しないメソッドを呼ぼうとするとエラー
+// const errResult = f4_2.minus(f2)
+
